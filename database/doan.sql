@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 01, 2022 at 05:45 AM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.3.12
+-- Generation Time: Aug 10, 2023 at 03:45 AM
+-- Server version: 8.0.33
+-- PHP Version: 8.1.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -30,15 +29,15 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `status` tinyint(4) NOT NULL,
-  `created_time` int(11) NOT NULL,
-  `last_updated` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `password` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `status` tinyint NOT NULL,
+  `created_time` int NOT NULL,
+  `last_updated` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `admin`
@@ -48,7 +47,8 @@ INSERT INTO `admin` (`id`, `username`, `password`, `status`, `created_time`, `la
 (3, 'admin', '1', 1, 1, 1640508066),
 (6, 'admin3', '1', 1, 1, 1),
 (7, 'admin4', '1', 1, 1, 1640626299),
-(8, 'admin5', '55555', 1, 1, 1);
+(8, 'admin5', '55555', 1, 1, 1),
+(10, 'admin12', '123456', 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -58,14 +58,14 @@ INSERT INTO `admin` (`id`, `username`, `password`, `status`, `created_time`, `la
 
 DROP TABLE IF EXISTS `image_library`;
 CREATE TABLE IF NOT EXISTS `image_library` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `product_id` int(11) NOT NULL,
-  `path` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_time` int(11) NOT NULL,
-  `last_updated` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `product_id` int NOT NULL,
+  `path` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `created_time` int NOT NULL,
+  `last_updated` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_image_product` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=184 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=184 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `image_library`
@@ -257,10 +257,10 @@ INSERT INTO `image_library` (`id`, `product_id`, `path`, `created_time`, `last_u
 
 DROP TABLE IF EXISTS `menu_product`;
 CREATE TABLE IF NOT EXISTS `menu_product` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `menu_product`
@@ -284,31 +284,31 @@ INSERT INTO `menu_product` (`id`, `name`) VALUES
 
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE IF NOT EXISTS `orders` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `phone` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `content` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_time` int(11) NOT NULL,
-  `last_updated` int(11) NOT NULL,
-  `status` tinyint(4) NOT NULL,
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `phone` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `address` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `content` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `created_time` int NOT NULL,
+  `last_updated` int NOT NULL,
+  `status` tinyint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `name`, `email`, `phone`, `address`, `content`, `created_time`, `last_updated`, `status`) VALUES
-(12747, 76, 'Phúc Hữu Đặng', 'phuchuu0120@gmail.com', '0702118657', '771', '', 1640779130, 1640779130, 0),
-(88330, 76, 'Đặng Phúc Hữu', 'phuchuu3875@gmail.com', '0702118657', '771 Kinh Dương Vương An Lạc Bình Tân', 'Giao hàng nhớ gọi trước 30p nhé !', 1640776954, 1640776954, 0),
-(347447, 76, 'Hàng Ngọc Hưng', 'phuchuu3875@gmail.com', '12313213', '180 Cao Lỗ Quận 8', 'Giao hàng cẩn thận !', 1640780371, 1640780371, 3),
-(349418, 76, 'Đặng Phúc Hữu', 'phuchuu3875@gmail.com', '12313213', '180 Cao Lỗ Quận 8', 'Giao hàng cẩn thận !', 1640780338, 1640780338, 2),
-(586908, 63, 'Đặng Phúc Hữu', 'phuchuu1122@gmail.com', '123123', '771', '', 1640625830, 1640625830, 1),
-(699917, 76, 'Phúc Hữu Đặng', 'phuchuu3875@gmail.com', '0702118657', '771', '', 1640779174, 1640779174, 1);
+(12747, 76, 'Hữu', 'phuchuu0120@gmail.com', '0702118657', '2', '', 1640779130, 1640779130, 0),
+(88330, 76, 'Hữu', 'phuchuu3875@gmail.com', '0702118657', '180 calo lo', 'Giao hàng nhớ gọi trước 30p nhé !', 1640776954, 1640776954, 0),
+(347447, 76, 'Hữu', 'phuchuu3875@gmail.com', '12313213', '180 Cao Lỗ Quận 8', 'Giao hàng cẩn thận !', 1640780371, 1640780371, 3),
+(349418, 76, 'Hữu', 'phuchuu3875@gmail.com', '12313213', '180 Cao Lỗ Quận 8', 'Giao hàng cẩn thận !', 1640780338, 1640780338, 2),
+(586908, 63, 'Hữu', 'phuchuu1122@gmail.com', '123123', '2', '', 1640625830, 1640625830, 1),
+(699917, 76, 'Hữu', 'phuchuu3875@gmail.com', '0702118657', '2', '', 1640779174, 1640779174, 1);
 
 -- --------------------------------------------------------
 
@@ -318,15 +318,15 @@ INSERT INTO `orders` (`id`, `user_id`, `name`, `email`, `phone`, `address`, `con
 
 DROP TABLE IF EXISTS `orders_detail`;
 CREATE TABLE IF NOT EXISTS `orders_detail` (
-  `order_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `product_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `quantity` tinyint(4) NOT NULL,
-  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `order_id` int NOT NULL,
+  `product_id` int NOT NULL,
+  `product_name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `quantity` tinyint NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `price` float NOT NULL,
   KEY `order_id` (`order_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `orders_detail`
@@ -353,18 +353,18 @@ INSERT INTO `orders_detail` (`order_id`, `product_id`, `product_name`, `quantity
 
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE IF NOT EXISTS `product` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `menu_id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `menu_id` int NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `price` float NOT NULL,
   `price_new` float NOT NULL,
-  `content` text COLLATE utf8_unicode_ci NOT NULL,
-  `created_time` int(11) NOT NULL,
-  `last_updated` int(11) NOT NULL,
+  `content` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `created_time` int NOT NULL,
+  `last_updated` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `menu_id` (`menu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `product`
@@ -501,14 +501,14 @@ INSERT INTO `product` (`id`, `menu_id`, `name`, `image`, `price`, `price_new`, `
 
 DROP TABLE IF EXISTS `rate`;
 CREATE TABLE IF NOT EXISTS `rate` (
-  `product_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `product_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `rate` tinyint(1) NOT NULL,
-  `review` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `review` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   KEY `product_id` (`product_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `rate`
@@ -540,30 +540,30 @@ INSERT INTO `rate` (`product_id`, `user_id`, `name`, `rate`, `review`) VALUES
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fullname` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `username` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `sdt` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `gioitinh` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  `created_time` int(11) DEFAULT NULL,
-  `last_updated` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `fullname` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `username` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `password` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `sdt` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `gioitinh` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL DEFAULT '0',
+  `created_time` int DEFAULT NULL,
+  `last_updated` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `fullname`, `email`, `username`, `password`, `sdt`, `gioitinh`, `created_time`, `last_updated`) VALUES
-(63, 'Đặng Phúc Hữu', 'phuchuu0120@gmail.com', 'phuchuu', '2bbed2a7edb59a501e812546c701a09f', '0702118657', 'Nam', 1640608776, 1640608776),
-(67, 'Hàng Ngọc Hưng', 'hunghang113@gmail.com', 'hunghang', 'c4ca4238a0b923820dcc509a6f75849b', '123', 'Nữ', 1640609006, 1640609006),
-(75, 'Phúc Hữu Đặng', 'phuchuu1122@gmail.com', 'dangphuchuu', 'c4ca4238a0b923820dcc509a6f75849b', '1231312', 'Nam', 1640611111, 1640611111),
-(76, 'Đặng Phúc Hữu', 'phuchuu3875@gmail.com', 'phuchuudang', 'c4ca4238a0b923820dcc509a6f75849b', '0702118657', 'Nam', 1640776566, 1640776566),
-(77, 'Đặng Hữu Hòa', 'huuhoa@gmail.com', 'huuhoa', 'c4ca4238a0b923820dcc509a6f75849b', '0702118657', 'Nam', 1641015004, 1641015004);
+(63, 'Anh Hữu', 'phuchuu0120@gmail.com', 'phuchuu', '2bbed2a7edb59a501e812546c701a09f', '0702118657', 'Nam', 1640608776, 1640608776),
+(67, 'Anh Hữu', 'hunghang113@gmail.com', 'hunghang', 'c4ca4238a0b923820dcc509a6f75849b', '123', 'Nữ', 1640609006, 1640609006),
+(75, 'Anh Hữu', 'phuchuu1122@gmail.com', 'dangphuchuu', 'c4ca4238a0b923820dcc509a6f75849b', '1231312', 'Nam', 1640611111, 1640611111),
+(76, 'Anh Hữu', 'phuchuu3875@gmail.com', 'phuchuudang', 'c4ca4238a0b923820dcc509a6f75849b', '0702118657', 'Nam', 1640776566, 1640776566),
+(77, 'Anh Hữu', 'huuhoa@gmail.com', 'huuhoa', 'c4ca4238a0b923820dcc509a6f75849b', '0702118657', 'Nam', 1641015004, 1641015004);
 
 --
 -- Constraints for dumped tables
